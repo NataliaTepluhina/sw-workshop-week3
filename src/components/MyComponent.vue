@@ -4,6 +4,7 @@
       <h1 v-if="showTitle">My Component Title</h1>
       <span>Count: {{ count }}</span>
       <button @click="increment">Increment</button>
+      <p>Count x2: {{ double }}</p>
     </div>
     <hr />
     <div>
@@ -29,7 +30,8 @@ export default {
   props: {
     showTitle: {
       type: Boolean,
-      required: true,
+      required: false,
+      default: false,
     },
   },
   data() {
@@ -37,6 +39,11 @@ export default {
       count: 0,
       childCounter: 1,
     };
+  },
+  computed: {
+    double() {
+      return this.count * 2;
+    },
   },
   methods: {
     increment() {
