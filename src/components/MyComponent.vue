@@ -1,14 +1,19 @@
 <template>
   <div>
     <div>
-      <h1 v-if="showTitle">My Component Title</h1>
-      <span>Count: {{ count }}</span>
-      <button @click="increment">Increment</button>
-      <p>Count x2: {{ double }}</p>
+      <h1 v-if="showTitle" data-testid="title">My Component Title</h1>
+      <span class="test-count">Count: {{ count }}</span>
+      <button class="test-increment-button" @click="increment">
+        Increment
+      </button>
+      <p class="test-double">Count x2: {{ double }}</p>
     </div>
     <hr />
     <div>
-      <button @click="$emit('custom-event', 'Hello World')">
+      <button
+        class="test-emitter"
+        @click="$emit('custom-event', 'Hello World')"
+      >
         Emit an event!
       </button>
     </div>
@@ -51,6 +56,11 @@ export default {
     },
     onChildButtonClick() {
       this.childCounter++;
+    },
+  },
+  watch: {
+    showTitle() {
+      this.$emit("watcher-triggered");
     },
   },
 };
