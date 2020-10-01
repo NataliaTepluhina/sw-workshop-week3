@@ -1,0 +1,56 @@
+<template>
+  <div>
+    <div>
+      <h1 v-if="showTitle">My Component Title</h1>
+      <span>Count: {{ count }}</span>
+      <button @click="increment">Increment</button>
+    </div>
+    <hr />
+    <div>
+      <button @click="$emit('custom-event', 'Hello World')">
+        Emit an event!
+      </button>
+    </div>
+    <hr />
+    <div>
+      <MyButton @click="onChildButtonClick">Child Component Button</MyButton>
+      {{ childCounter }}
+    </div>
+  </div>
+</template>
+
+<script>
+import MyButton from "./MyButton.vue";
+export default {
+  name: "MyComponent",
+  components: {
+    MyButton,
+  },
+  props: {
+    showTitle: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      count: 0,
+      childCounter: 1,
+    };
+  },
+  methods: {
+    increment() {
+      this.count++;
+    },
+    onChildButtonClick() {
+      this.childCounter++;
+    },
+  },
+};
+</script>
+
+<style>
+button {
+  margin-left: 10px;
+}
+</style>
