@@ -1,6 +1,8 @@
 <template>
   <div>
     <div>
+      {{ $route.path }}
+      <router-link to="/"></router-link>
       <h1 v-if="showTitle" data-testid="title">My Component Title</h1>
       <span class="test-count">Count: {{ count }}</span>
       <button class="test-increment-button" @click="increment">
@@ -19,16 +21,22 @@
     </div>
     <hr />
     <div>
-      <MyButton @click="onChildButtonClick">Child Component Button</MyButton>
-      {{ childCounter }}
+      <MyButton
+        :double="double"
+        :class="{ colored: double }"
+        @click="onChildButtonClick"
+      >
+        <template #button>Test</template>
+      </MyButton>
+      <p class="test-child-counter">{{ childCounter }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import MyButton from "./MyButton.vue";
+import MyButton from './MyButton.vue'
 export default {
-  name: "MyComponent",
+  name: 'MyComponent',
   components: {
     MyButton,
   },
@@ -43,27 +51,27 @@ export default {
     return {
       count: 0,
       childCounter: 1,
-    };
+    }
   },
   computed: {
     double() {
-      return this.count * 2;
+      return this.count * 2
     },
   },
   methods: {
     increment() {
-      this.count++;
+      this.count++
     },
     onChildButtonClick() {
-      this.childCounter++;
+      this.childCounter++
     },
   },
   watch: {
     showTitle() {
-      this.$emit("watcher-triggered");
+      this.$emit('watcher-triggered')
     },
   },
-};
+}
 </script>
 
 <style>

@@ -1,18 +1,29 @@
 <template>
   <div id="app">
-    <MyComponent />
+    <button @click="toggleShowTitle">Toggle showTitle</button>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import MyComponent from "./components/MyComponent.vue";
+import MyComponent from './components/MyComponent.vue'
 
 export default {
-  name: "App",
+  name: 'App',
+  data() {
+    return {
+      showTitle: false,
+    }
+  },
+  methods: {
+    toggleShowTitle() {
+      this.showTitle = !this.showTitle
+    },
+  },
   components: {
     MyComponent,
   },
-};
+}
 </script>
 
 <style>
