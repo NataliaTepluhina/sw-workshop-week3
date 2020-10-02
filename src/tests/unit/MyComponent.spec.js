@@ -44,16 +44,18 @@ describe('MyComponent', () => {
     wrapper = null
   })
 
-  it('renders a Vue component', () => {
-    createComponent()
+  describe('with default props', () => {
+    beforeEach(() => {
+      createComponent()
+    })
 
-    expect(wrapper.exists()).toBe(true)
-  })
+    it('renders a Vue component', () => {
+      expect(wrapper.exists()).toBe(true)
+    })
 
-  it('does not render a title when showTitle prop is false', () => {
-    createComponent()
-
-    expect(findTitle().exists()).toBe(false)
+    it('does not render a title when showTitle prop is false', () => {
+      expect(findTitle().exists()).toBe(false)
+    })
   })
 
   it('renders a title when showTitle prop is true', () => {
